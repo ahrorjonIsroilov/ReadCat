@@ -10,13 +10,13 @@ import ent.readon.entity.user.AuthUser;
 import ent.readon.enums.RoleName;
 import ent.readon.mapper.AuthMapper;
 import ent.readon.repo.AuthRepo;
-import ent.readon.repo.RoleRepo;
+import ent.readon.repo.book.RoleRepo;
+import ent.readon.service.AbstractService;
 import ent.readon.utils.Utils;
 import ent.readon.utils.Validator;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -57,7 +57,7 @@ public class AuthService extends AbstractService<AuthRepo, AuthMapper> implement
         try {
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(dto.getUsername(), dto.getPassword()));
             return new ApiResponse(jwtProvider.generateToken(dto.getUsername(), request), true);
-        } catch (BadCredentialsException e) {
+        } catch (Exception e) {
             return new ApiResponse(e.getLocalizedMessage(), false);
         }
     }

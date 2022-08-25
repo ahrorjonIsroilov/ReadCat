@@ -1,4 +1,4 @@
-package ent.readon.service.user;
+package ent.readon.service;
 
 import ent.readon.mapper.MyMapper;
 import ent.readon.repo.BaseRepo;

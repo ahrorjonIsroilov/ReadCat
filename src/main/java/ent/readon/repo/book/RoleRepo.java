@@ -1,4 +1,4 @@
-package ent.readon.repo;
+package ent.readon.repo.book;
 
 import ent.readon.entity.Role;
 import ent.readon.enums.RoleName;

@@ -1,5 +1,8 @@
 package ent.readon.utils;
 
+import ent.readon.dto.book.BookCreateDto;
+import ent.readon.dto.book.NoteDto;
+import ent.readon.dto.book.QuoteDto;
 import ent.readon.dto.user.PasswordResetDto;
 import ent.readon.dto.user.UserCreateDto;
 import ent.readon.repo.AuthRepo;
@@ -113,5 +116,25 @@ public class Utils {
             }
         };
         service.execute(sender);
+    }
+
+    public Validator<?> validForAddBook(BookCreateDto dto) {
+        if(dto.getTitle()==null)return new Validator<>("Book title must not be null",false);
+        if(dto.getAuthor()==null)return new Validator<>("Book author must not be null",false);
+        if(dto.getTotalPage()==null)return new Validator<>("Total page must not be null",false);
+        return new Validator<>(true);
+    }
+
+    public Validator<?> validForAddNote(NoteDto dto) {
+        if(dto.getTitle()==null)return new Validator<>("Note title required!",false);
+        if(dto.getBookId()==null)return new Validator<>("Book id required!",false);
+        return new Validator<>(true);
+    }
+
+    public Validator<?> validForAddQuote(QuoteDto dto) {
+        if(dto.getPage()==null)return new Validator<>("Page required!",false);
+        if(dto.getTitle()==null)return new Validator<>("Title required!",false);
+        if(dto.getBookId()==null)return new Validator<>("Book id required!",false);
+        return new Validator<>(true);
     }
 }

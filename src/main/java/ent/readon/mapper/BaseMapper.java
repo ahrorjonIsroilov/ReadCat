@@ -12,5 +12,5 @@ public interface BaseMapper<E, D, CD, UD> extends MyMapper {
 
     E fromCreateDto(CD createDto, PasswordEncoder passwordEncoder);
 
-    E fromUpdateDto(UD updateDto, AuthUser user);
+    E fromUpdateDto(UD updateDto, E entity);
 }

@@ -35,4 +35,8 @@ public class ApiResponse {
         this.data = data;
         this.success = true;
     }
+    public ApiResponse(String message) {
+        this.message = message;
+        this.success = true;
+    }
 }

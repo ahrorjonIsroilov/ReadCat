@@ -4,9 +4,11 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sun.istack.NotNull;
 import ent.readon.entity.Auditable;
 import ent.readon.entity.Role;
+import ent.readon.entity.book.Book;
 import ent.readon.enums.Avatar;
 import ent.readon.enums.Permissions;
 import lombok.*;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -17,6 +19,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 
 @Getter
 @Setter
@@ -33,7 +36,7 @@ public class AuthUser extends Auditable implements UserDetails {
     private String password;
     @Enumerated(EnumType.STRING)
     private Avatar avatar;
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "role_id")
     private Role role;
     @NotNull
@@ -55,6 +58,8 @@ public class AuthUser extends Auditable implements UserDetails {
     @Column(name = "credentials_non_expired")
     private boolean credentialsNonExpired = true;
     private boolean enabled = false;
+    @OneToMany(mappedBy = "user",fetch = FetchType.LAZY)
+    private List<Book> books;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

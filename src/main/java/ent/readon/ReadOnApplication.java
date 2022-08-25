@@ -6,7 +6,7 @@ import ent.readon.enums.Avatar;
 import ent.readon.enums.Permissions;
 import ent.readon.enums.RoleName;
 import ent.readon.repo.AuthRepo;
-import ent.readon.repo.RoleRepo;
+import ent.readon.repo.book.RoleRepo;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -34,7 +34,7 @@ public class ReadOnApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-//        migrate();
+        //migrate();
     }
 
     private void migrate() {
